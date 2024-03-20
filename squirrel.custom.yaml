@@ -1,0 +1,14 @@
+patch:
+  "style/horizontal": false
+  "style/candidate_list_layout": linear
+  "style/corner_radius": 5
+  "style/font_point": 14
+  "style/label_font_face": "Maple Mono SC NF"
+  "style/label_font_point": 10
+  "style/comment_font_point": 10
+  # "style/hilited_corner_radius": 5
+  "style/candidate_format": "%c %@"
+  "show_notifications_when": never
+
+  app_options/com.microsoft.VSCode:
+    vim_mode: true

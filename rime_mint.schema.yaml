@@ -3,7 +3,7 @@
 
 schema:
   schema_id: rime_mint
-  name: 薄荷拼音-全拼输入
+  name: "ZH"
   version: "24.02.15"
   author:
     - mintimate < @Mintimate|https://www.mintimate.cn >
@@ -29,21 +29,22 @@ key_binder:
     - {accept: "Control+Shift+1", toggle: transcription, when: has_menu}
     - {accept: minus, send: Page_Up, when: paging}     # 使用`-`进行向上翻页（第一页时候无效）
     - {accept: equal, send: Page_Down, when: has_menu} # 使用`=`进行向下翻页
+    - {when: has_menu, accept: ";", send: 2 }
 
 switches:
   - name: ascii_mode
     reset: 0
-    states: [ 中文, 英文 ]
+    states: [ 中, 英 ]
   - name: emoji_suggestion
     reset: 1
     states: [ "😣️","😁️"]
-  - name: full_shape
-    states: [ 半角, 全角 ]
-  - name: transcription
-    reset: 0
-    states: [ 简体 , 繁体 ]
-  - name: ascii_punct
-    states: [ 。，, ．， ]
+#   - name: full_shape
+#     states: [ 半, 全 ]
+#   - name: transcription
+#     reset: 0
+#     states: [ 简 , 繁 ]
+#   - name: ascii_punct
+#     states: [ 。，, ．， ]
 
 engine:
   processors:
@@ -180,8 +181,8 @@ speller:
     - erase/^xx$/ # 首选保留
     # - derive/^([zcs])h/$1/ # zh, ch, sh => z, c, s
     # - derive/^([zcs])([^h])/$1h$2/ # z, c, s => zh, ch, sh
-    # - derive/([aei])n$/$1ng/ # en => eng, in => ing
-    # - derive/([aei])ng$/$1n/ # eng => en, ing => in
+    - derive/([aei])n$/$1ng/ # en => eng, in => ing
+    - derive/([aei])ng$/$1n/ # eng => en, ing => in
     # - derive/([iu])an$/$lan/ # ian => iang, uan => uang
     # - derive/([iu])ang$/$lan/ # iang => ian, uang => uan
     - derive/([aeiou])ng$/$1gn/        # dagn => dang
