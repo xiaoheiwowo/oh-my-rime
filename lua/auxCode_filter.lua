@@ -6,6 +6,14 @@
 
 local AuxFilter = {}
 
+local function alt_lua_punc( s )
+    if s then
+        return s:gsub( '([%.%+%-%*%?%[%]%^%$%(%)%%])', '%%%1' )
+    else
+        return ''
+    end
+end
+
 -- 日志模块
 -- local log = require 'log'
 -- log.outfile = "aux_code.log"
@@ -20,6 +28,9 @@ function AuxFilter.init(env)
 
     -- 設定預設觸發鍵為分號，並從配置中讀取自訂的觸發鍵
     env.trigger_key = config:get_string("axu_code/trigger_word") or ";"
+    -- 对内容进行替换
+    env.trigger_key_string = alt_lua_punc( env.trigger_key )
+
     -- 设定是否显示辅助码，默认为显示
     env.show_aux_notice = config:get_string("axu_code/show_aux_notice") or 'always'
 
@@ -28,13 +39,13 @@ function AuxFilter.init(env)
     ----------------------------
     env.notifier = engine.context.select_notifier:connect(function(ctx)
         -- 含有輔助碼分隔符才處理
-        if not string.find(ctx.input, env.trigger_key) then
+        if not string.find(ctx.input, env.trigger_key_string) then
             return
         end
 
         local preedit = ctx:get_preedit()
-        local removeAuxInput = ctx.input:match("([^,]+)" .. env.trigger_key)
-        local reeditTextFront = preedit.text:match("([^,]+)" .. env.trigger_key)
+        local removeAuxInput = ctx.input:match("([^,]+)" .. env.trigger_key_string)
+        local reeditTextFront = preedit.text:match("([^,]+)" .. env.trigger_key_string)
 
         -- ctx.text 隨著選字的進行，oaoaoa； 有如下的輸出：
         -- ---- 有輔助碼 ----
@@ -192,9 +203,9 @@ function AuxFilter.func(input, env)
 
     -- 分割部分正式開始
     local auxStr = ''
-    if string.find(inputCode, env.trigger_key) then
+    if string.find(inputCode, env.trigger_key_string) then
         -- 字符串中包含輔助碼分隔符
-        local trigger_pattern = env.trigger_key:gsub("%W", "%%%1") -- 處理特殊字符
+        local trigger_pattern =  env.trigger_key_string
         local localSplit = inputCode:match(trigger_pattern .. "([^,]+)")
         if localSplit then
             auxStr = string.sub(localSplit, 1, 2)
@@ -227,7 +238,7 @@ function AuxFilter.func(input, env)
                 cand = ShadowCandidate(originalCand, originalCand.type, shadowText,
                     originalCand.comment .. shadowComment .. '(' .. codeComment .. ')')
             elseif env.show_aux_notice == "trigger" then
-                if string.find(inputCode,env.trigger_key) then
+                if string.find(inputCode,env.trigger_key_string) then
                     cand.comment = '(' .. codeComment .. ')'
                 end
             else 

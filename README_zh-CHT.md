@@ -12,9 +12,10 @@
 
 ## Oh-my-rime指南
 
-rime配置教程：
+Rime 配置教程：
 - [跨平臺的開源輸入法Rime定製指南，打造強大的個性化輸入法](https://www.mintimate.cn/2023/03/18/rimeQuickInit)
-- [Bilibili視頻: https://www.bilibili.com/video/BV12M411T7gf](https://www.bilibili.com/video/BV12M411T7gf)
+- [Bilibili視頻(macOS/Windows/Linux): https://www.bilibili.com/video/BV12M411T7gf](https://www.bilibili.com/video/BV12M411T7gf)
+- [Bilibili視頻(iOS/Android)]: https://www.bilibili.com/video/BV1Mr42137Ns](https://www.bilibili.com/video/BV1Mr42137Ns)
 - [Youtube視頻: https://www.youtube.com/watch?v=yc4AivDDpMM](https://www.youtube.com/watch?v=yc4AivDDpMM)
 
 如果你有QQ帳號，可以加入群聊（禁止廣告）: 703260572
@@ -26,9 +27,15 @@ rime配置教程：
 - 小鶴雙拼-薄荷定制: 基於小鶴雙拼，添加定制內容。支援輸入音形(形碼)；
 - 薄荷拼音-小鶴混輸: 全拼輸入的同時，支援小鶴雙拼；
 - 地球拼音-薄荷定制: 基於地球拼音，添加定制內容，擴展海量詞庫；
-- 五筆九八-薄荷簡版: 基於五筆98的精簡版本，期待大家的PR。
+- 五筆九八-薄荷簡版: 基於五筆98的精簡版本，期待大家的PR
+- 倉九宮格-全拼輸入: 基於「薄荷拼音-全拼輸入」，適用於在iOS倉輸入法內使用九宮格。
 
 妳可以在安裝後，使用『Ctrl』+『~』進行切換。（預設激活的是『薄荷拼音-全拼輸入』）。
+
+目前薄荷內自帶兩套皮膚： 水鴨繫列、青澀繫列。大家可以在鼠須管和小狼毫的個性化配置內自由選擇激活，也可以使用自己的配色（推薦[使用 custom 對薄荷配置進行覆寫](https://www.mintimate.cc/zh/guide/configurationOverride.html#%E4%BF%AE%E6%94%B9%E8%96%84%E8%8D%B7%E8%BE%93%E5%85%A5%E6%B3%95%E7%9A%84%E9%85%8D%E7%BD%AE)）。
+
+![顯示效果](https://www.mintimate.cc/image/demo/themeOfOhMyRime.webp)
+
 
 ### 安裝
 
@@ -51,6 +58,8 @@ rime配置教程：
   - Squirrel: `~/Library/Rime`
 - Linux
   - iBus:` ~/.config/ibus/rime`
+  - Fcitx5: `~/.local/share/fcitx5/rime`
+- Fctix5 Android(小企鵝輸入法): `/storage/emulated/0/Android/data/org.fcitx.fcitx5.android/files/data/rime/`
 
 本地rime日誌文件默認地址如下：
 - Windows
@@ -59,7 +68,12 @@ rime配置教程：
   - Squirrel: `$TMPDIR`
 - Linux
   - iBus:` /tmp`
+  
+如果妳需要在同文輸入法內使用，需要一個鍵盤模闆和皮膚，可以使用: [薄荷輸入法的”藍水鴨“和”黑水鴨“皮膚佈局](https://www.mintimate.cc/zh/demo/diffAppearance.html#android%E5%A4%96%E8%A7%82)
 
+倉輸入法 Hamster 內如何使用九宮格輸入？
+
+薄荷方案內，基於[Hamster](https://github.com/imfuxiao/Hamster/) 九宮格佈局和[霧凇九宮格](https://github.com/iDvel/rime-ice/blob/main/t9.schema.yaml)移植了九宮格。需要同時啟用九宮格方案（輸入方案設定）和九宮格佈局（鍵盤設定 - 鍵盤佈局 - 中文 9 鍵）。
 
 ## 配置文件說明
 

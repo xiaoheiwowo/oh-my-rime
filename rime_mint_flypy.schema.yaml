@@ -142,12 +142,21 @@ reduce_english_filter:
 # 中国农历配置
 chineseLunarCalendar_translator: lunar
 
+# Lua 配置：为 corrector 格式化 comment，占位符为 {comment}
+# 默认 "{comment}" 输入 hun dun 时会在「馄饨」旁边生成 hún tun 的 comment
+# 例如左右加个括号 "({comment})" 就会变成 (hún tun)
+corrector: "{comment}"
+
 translator:
+  # enable_correction: true      # Rime自带的按键纠错，适用于手机26键 参考: https://github.com/rime/librime/pull/228
   # 字典文件
   dictionary: rime_mint          # 使用的字典文件
   prism: rime_mint_flypy     # 多方案共用一个词库时，为避免冲突，需要用 prism 指定一个名字。
   spelling_hints: 8              # corrector.lua ：为了让错音错字提示的 Lua 同时适配全拼双拼，将拼音显示在 comment 中
   always_show_comments: true     # corrector.lua ：Rime 默认在 preedit 等于 comment 时取消显示 comment，这里强制一直显示，供 corrector.lua 做判断用。
+  comment_format:               # 标记拼音注释，供 corrector.lua 做判断用
+    - xform/^/［/
+    - xform/$/］/
   preedit_format:
     - xform/([nl])v/$1ü/
     - xform/([nl])ue/$1üe/
@@ -182,7 +191,7 @@ speller:
     - derive/([aeiou])ng$/$1gn/        # dagn => dang
     - derive/([dtngkhrzcs])o(u|ng)$/$1o/  # zho => zhong|zhou
     - derive/ong$/on/                  # zhonguo => zhong guo
-    - abbrev/^([a-z]).+$/$1/ #简拼（首字母）
+    - abbrev/^([a-z])[a-z]*$/$1/       # 简拼（首字母）
     - abbrev/^([zcs]h).+$/$1/ #简拼（zh, ch, sh）
      ### 自动纠错
     # 有些规则对全拼简拼混输有副作用：如「x'ai 喜爱」被纠错为「xia 下」
@@ -296,16 +305,16 @@ wubi98_mint:
   dictionary: wubi98_mint
   enable_user_dict: false
   enable_completion: true
-  prefix: "uuw"
-  suffix: "'"
+  prefix: "Uw"
+  suffix: " '"
   tips: 〔五笔〕
 
 stroke:
   tag: stroke
   dictionary: stroke
   enable_user_dict: false
-  prefix: 'uui'
-  suffix: "'"
+  prefix: 'Ui'
+  suffix: " '"
   tips: 〔笔画〕
   preedit_format:
     - xlit/hspnz/一丨丿丶乙/
@@ -315,10 +324,9 @@ radical_reverse_lookup:
   dictionary: radical_pinyin
   enable_completion: false
   enable_sentence: false
-  prefix: "uuu"
+  prefix: "Uu"
   suffix: " '"
   comment_format:
-    - erase/^.*$//
     - xform/([nljqxy])v/$1ü/
   tips: 〔拆字〕
 
@@ -353,8 +361,9 @@ recognizer:
   patterns:
     url: "^[a-z]+[.].+$"
     punct: "^/([0-9]0?|[a-z]+)$"
-    wubi98_mint: "uuw[a-z]*'?$"
-    stroke: "uui[a-z]*'?$"
-    radical_lookup: "uuu[a-z]*'?$"
+    wubi98_mint: "Uw[a-z]*'?$"
+    stroke: "Ui[a-z]*'?$"
+    radical_lookup: "Uu[a-z]*'?$"
     rmb: "^R[0-9]+[.]?[0-9]*"        # 响应 lua_translator@number_translator 脚本将自动获取第 2 个字符作为触发前缀
     gregorian_to_lunar: "^N[0-9]{1,8}"  # 响应 lua_translator@Chinese_lunar_calendar 公历转农历，输入 N20240115 得到「二〇二四年腊月初五」，脚本将自动获取第 2 个字符作为触发前缀
+    uppercase: ""  # 覆写默认的 uppercase 使其可以在输入大写后，输入数字

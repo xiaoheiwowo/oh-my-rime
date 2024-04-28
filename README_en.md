@@ -12,9 +12,10 @@ If you encounter difficulties with downloading, use the mirrored repository push
 
 ## Oh-my-rime guide
 
-rime configuration tutorial:
+Rime configuration tutorial:
 - [Cross-platform open source input method Rime customization guide, create a powerful personalized input method] (https://www.mintimate.cn/2023/03/18/rimeQuickInit)
-- [Bilibili Video: https://www.bilibili.com/video/BV12M411T7gf](https://www.bilibili.com/video/BV12M411T7gf)
+- [Bilibili Video(macOS/Windows/Linux): https://www.bilibili.com/video/BV12M411T7gf](https://www.bilibili.com/video/BV12M411T7gf)
+- [Bilibili Video(iOS/Android): https://www.bilibili.com/video/BV1Mr42137Ns](https://www.bilibili.com/video/BV1Mr42137Ns)
 - [Youtube Video: https://www.youtube.com/watch?v=yc4AivDDpMM](https://www.youtube.com/watch?v=yc4AivDDpMM)
 
 You have a QQ account, you can join the group chat(No Ads!): 703260572
@@ -30,6 +31,10 @@ The input method scheme included:
 - Wubi 98 - Mint Simplified: A simplified version based on Wubi 98, looking forward to your contributions.
 
 You can switch between input methods by pressing "Ctrl" + "~" after installation. (Mint Pinyin is activated by default).
+
+Currently, Mint comes with two sets of skins: blue series and green series. You can freely choose to activate within the personalized configuration of Squirrel and Weasel , or you can use your own color matching (it is recommended to use custom to overwrite the mint configuration) (https://www.minitimate.cc/zh/guide /configurationOverride.html#%E4%BF%AE%E6%94%B9%E8%96%84%E8%8D%B7%E8%BE%93%E5%85%A5%E6%B3%95%E7% 9A%84%E9%85%8D%E7%BD%AE)).
+
+![Display effect](https://www.minitimate.cc/image/demo/themeOfOhMyRime.webp)
 
 ### Install
 
@@ -50,6 +55,8 @@ The default address of the local rime configuration file is as follows
   - Squirrel: `~/Library/Rime`
 - Linux
   - iBus: `~/.config/ibus/rime`
+  - Fcitx5: `~/.local/share/fcitx5/rime`
+- Fctix5 Android: `/storage/emulated/0/Android/data/org.fcitx.fcitx5.android/files/data/rime/`
 
 The default address of the local rime log file is as follows:
 -Windows
@@ -59,6 +66,11 @@ The default address of the local rime log file is as follows:
 - Linux
   -iBus:`/tmp`
 
+If you need to use rime in trime with android, you can use oh-my-rime's theme by: [Mint_light_blue and Mint_dark_blue](https://www.mintimate.cc/zh/demo/diffAppearance.html#android%E5%A4%96%E8%A7%82)
+
+With the Hamster input method, how is the 9-grid input used?
+
+Inside the Oh-my-rime, the 9-grid layout has been adapted from Hamster's [9-grid arrangement](https://github.com/imfuxiao/Hamster/) and the [rime-ice's 9-grid](https://github.com/iDvel/rime-ice/blob/main/t9.schema.yaml). To utilize the 9-grid input, both the 9-grid scheme (set under Input Scheme settings) and the 9-grid layout (键盘设置 - 键盘布局 - 中文 9 键) need to be enabled simultaneously.
 
 ## Configuration file description
 
