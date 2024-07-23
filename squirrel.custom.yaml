@@ -10,5 +10,5 @@ patch:
   "style/candidate_format": "%c %@"
   "show_notifications_when": never
 
-  app_options/com.microsoft.VSCode:
-    vim_mode: true
+  # app_options/com.microsoft.VSCode:
+    # vim_mode: true
