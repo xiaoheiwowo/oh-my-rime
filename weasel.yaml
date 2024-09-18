@@ -14,6 +14,10 @@ config_version: "2024-03-02"
 app_options:
   firefox.exe:
     inline_preedit: true # 行内显示预编辑区：规避 <https://github.com/rime/weasel/issues/946>
+  iexplore.exe:
+    inline_preedit: true # 兼容 IE
+  browser.exe:
+    inline_preedit: true # 兼容 Yandex
 
 # [global settings]
 show_notifications: true                   # 是否显示状态变化的通知：true；false；option_list（方案内的开头 option）
@@ -42,9 +46,9 @@ style:
   
   fullscreen: false                        # 候选窗口全屏显示：true；false
   vertical_text: false                     # 竖排文本：true；false
-  text_orientation: horizontal             # 文本排列方向，效果和 `vertical_text` 相同：horizontal；vertical
-  candidate_list_layout: stacked           # stacked | linear  候选项排列方向（似乎只有在custom内才可以生效）
-  horizontal: false                        # 候选项水平排列（在custom内和andidate_list_layout的linear效果一样）
+  # text_orientation: horizontal           # 文本排列方向，效果和 `vertical_text` 相同：horizontal；vertical
+  candidate_list_layout: stacked           # stacked | linear  候选项排列方向（小狼毫可能没有这个参数；如果需要修改为水平布局，可以在custom文件内修改horizontal为true）
+  horizontal: false                        # 候选项水平排列（在custom内和candidate_list_layout的linear效果一样）
   vertical_text_left_to_right: false       # 竖排方向是否从左到右：true；false
   vertical_text_with_wrap: false           # 文本竖排模式下，自动换行：true；false
   vertical_auto_reverse: false             # 文本竖排模式下，候选窗口位于光标上方时倒序排列：true；false
@@ -56,11 +60,14 @@ style:
   display_tray_icon: false                 # 托盘显示独立于语言栏的额外图标：true；false
   antialias_mode: default                  # 次像素反锯齿设定：default；force_dword；cleartype；grayscale；aliased
   candidate_abbreviate_length: 30          # 候选项略写，超过此数字则用省略号代替。设置为 0 则不启用此功能
-  mouse_hover_ms: 0                        # 鼠标悬停选词响应时间（ms），设置为 0 时禁用该功能
+  mouse_hover_ms: 0                        # ! 已弃用。鼠标悬停选词响应时间（ms），设置为 0 时禁用该功能
+  hover_type: none                         # 鼠标在候选窗口悬停时：none（无动作）；hilite（选中鼠标下的候选）；semi_hilite（高亮鼠标下的候选）
   paging_on_scroll: true                   # 在候选窗口上滑动滚轮的行为：true（翻页）；false （选中下一个候选）
   click_to_capture: false                  # 鼠标点击候选项，创建截图：true；false
 
   layout:
+    baseline: 0                            # 字号百分比，与 linespacing 一同设置可解决字体跳动问题，设置为 0 为禁用
+    linespacing: 0                         # 字号百分比，参考 <https://github.com/rime/weasel/pull/1177>
     align_type: center                     # 标签、候选文字、注解文字之间的相对对齐方式：top ; center ; bottom
     max_height: 600                        # 候选框最大高度，horizontal 布局如宽超此尺寸则换行显示候选，设置为 0 不启用此功能
     max_width: 0                           # 候选框最大宽度，文本竖排模式下如高度超此尺寸则换列显示候选，设置为 0 不启用此功能
@@ -155,6 +162,8 @@ preset_color_schemes:
     # 第一候选项
     hilited_candidate_text_color: 0xefefef
     # 第一候选项编号颜色
+    hilited_candidate_label_color: 0xcac9c8
+    # 第一候选项编号颜色
     hilited_label_color: 0xcac9c8
     # 注解文字高亮
     hilited_comment_text_color: 0xefefef 
@@ -185,6 +194,8 @@ preset_color_schemes:
     # 第一候选项
     hilited_candidate_text_color: 0xefefef
     # 第一候选项编号颜色
+    hilited_candidate_label_color: 0xffffff
+    # 第一候选项编号颜色
     hilited_label_color: 0xffffff
     # 注解文字高亮
     hilited_comment_text_color: 0xffffff
@@ -206,6 +217,7 @@ preset_color_schemes:
     hilited_candidate_text_color: 0xFFFFFF  # 选中文字颜色
     hilited_comment_text_color: 0xDFF0EE    # 选中注颜色
     hilited_candidate_label_color: 0xEFEFEF # 选中序号颜色
+    hilited_label_color: 0xEFEFEF           # 选中序号颜色
     text_color: 0x7BAE4F                    # 拼音颜色 （inline_preedit: false）
     hilited_text_color: 0xed9564            # 选中拼音颜色 （inline_preedit: false）
 
@@ -226,6 +238,7 @@ preset_color_schemes:
     hilited_candidate_text_color: 0xEFEFEF  # 选中文字颜色
     hilited_comment_text_color: 0xF4FAF8    # 选中注颜色
     hilited_candidate_label_color: 0xEFEFEF # 选中序号颜色
+    hilited_label_color: 0xEFEFEF           # 选中序号颜色
     text_color: 0x83C81C                    # 拼音颜色 （inline_preedit: false）
     hilited_text_color: 0xed9564            # 选中拼音颜色 （inline_preedit: false）
 
