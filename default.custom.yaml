@@ -4,8 +4,8 @@ patch:
     Caps_Lock: noop
     Control_L: noop # 不做任何操作
     Control_R: noop # 不做任何操作
-    # Shift_L: inline_ascii
-    # Shift_R: inline_ascii
+    Shift_L: noop
+    Shift_R: noop
   "menu/page_size": 6
   schema_list:
     - { schema: rime_mint } # 薄荷拼音
@@ -25,3 +25,12 @@ patch:
   "translator/enable_sentence": true
   "translator/enable_user_dict": true
   "translator/encode_commit_history": true
+
+  "key_binder/bindings":
+    - { when: always, accept: Control+Shift+1, select: .next } # 切换输入方案
+    - { when: always, accept: Control+Shift+2, toggle: noop } # 切换中/西文模式
+    - { when: always, accept: Control+Shift+3, toggle: noop } # 切换全角/半角
+    - { when: always, accept: Control+Shift+4, toggle: noop } # 切换简体/繁体
+    - { when: always, accept: Control+Shift+5, toggle: noop } # 切换扩展字符
+    - { when: always, accept: Shift+space, toggle: noop } # 另一种切换全角/半角的方式
+    - { when: always, accept: Control+period, toggle: noop } # 切换中/西文标点
